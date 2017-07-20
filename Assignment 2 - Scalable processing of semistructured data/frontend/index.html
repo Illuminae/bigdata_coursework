@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="consumer">
+<head>
+    <title>Tarea 1 - Grupo 4</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tarea 1 - Grupo 4</title>
+
+    <!-- Bootstrap -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+
+      </head>
+  <body ng-controller="MainCtrl">
+  <ul class="nav nav-pills nav-justified">
+    <li role="presentation" class="active"><a href="#">Uniandes crawler</a></li>
+    <li role="presentation"><a href="rss.html">RSS Query</a></li>
+    <li role="presentation"><a href="Wiki.html">Grafos Wiki</a></li>
+  </ul>
+  <div class="jumbotron">
+      <h2 class="text-primary">{{title}}</h2>
+      <p class="text-muted">{{description}}</p>
+      <p>
+        <button class="btn btn-primary btn-lg" type="button" ng-click="SearchData()" >
+          <span class="glyphicon glyphicon-search"></span> Buscar
+        </button>
+      </p>
+      <p style="color:grey;font-size:12px;">Grupo 4: Areli Merari Moreno Fonseca (201710663) | Carlos Javier Carvajal Montealegre (201717206) | Erik Baumert (201717459)</p>
+  </div>
+  <div class="row">
+  <div class="col-lg-12">
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="filtronombre"  placeholder="Nombre" aria-describedby="nombre">
+        <span class="input-group-addon" id="nombre">Nombre</span>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="filtrofacultad"  placeholder="Facultad" aria-describedby="facultad">
+        <span class="input-group-addon" id="facultad">Facultad</span>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="filtromail" placeholder="E-Mail" aria-describedby="correo">
+        <span class="input-group-addon" id="correo">Correo</span>
+      </div>
+      <div class="input-group">
+        <input type="text" ng-model="filtrotit"  placeholder="Título" class="form-control" aria-describedby="titulo">
+        <span class="input-group-addon" id="titulo">Títulos</span>
+      </div>
+      <div class="input-group">
+        <input type="text" ng-model="filtrovinc" placeholder="True or False" class="form-control" aria-describedby="vincula">
+        <span class="input-group-addon" id="vincula">Típo de Vinculación</span>
+      </div>
+      <div class="input-group">
+        <input type="text" ng-model="filtrocurso" placeholder="Cursos ofrecidos" class="form-control" aria-describedby="cursos">
+        <span class="input-group-addon" id="cursos">Cursos</span>
+      </div>
+      <div class="input-group">
+        <input type="text" ng-model="filtrocurri" placeholder="Currículo" class="form-control" aria-describedby="curriculo">
+        <span class="input-group-addon" id="curriculo">Currículo</span>
+      </div>
+
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+ <br><br><br>
+
+
+ <div class="container-fluid">
+    <div class="row">
+     <div class="col-sm-12">
+         <div ng-repeat="pers in restData | filter:{name: filtronombre, mail:filtromail, grades:filtrotit,cathedra: filtrovinc, courses: filtrocurso,curriculum:filtrocurri, facultad:filtrofacultad}" ng-if="pers.name.length" class="panel panel-primary"> 
+            <div class="panel-heading"> 
+                <h3 class="panel-title">{{stripString(pers.name[0]) + '  |  ' + pers.facultad}}</h3> 
+            </div> 
+            <div class="panel-body">
+              <p>Correo: {{stripString(pers.mail[0])}}</p>
+              <p>Cátedra:{{pers.cathedra}}</p>
+              <p>Títulos:
+                  <ul>
+                    <li ng-repeat="grad in pers.grades">{{stripString(grad)}}</li>
+                  </ul>
+              </p>
+              <p>Cursos que ofrece:
+                  <ul>
+                    <li ng-repeat="curso in pers.courses">{{curso}}</li>
+                  </ul>
+               </p> 
+              <p>Curriculum:
+                  <ul>
+                    <li ng-repeat="curr in pers.curriculum">{{curr}}</li>
+                  </ul>
+               </p> 
+            </div> 
+          </div>
+       </div>
+     </div>
+</div>
+    <script src="../js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script src="../js/angular.min.js" type="text/javascript"></script>
+    <script src="scripts/consumer.js" type="text/javascript"></script>
+    <style type="text/css">
+      .input-group-addon {
+      min-width:300px;
+      text-align:left;
+      }
+    </style>
+  </body>
+</html>

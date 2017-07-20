@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="tweetreader">
+<head>
+    <title>Tarea 1 - Grupo 4</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tarea 1 - Grupo 4</title>
+
+    <!-- Bootstrap -->
+<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+  </head>
+  <body ng-controller="TweetCtrl">
+  
+
+    <!-- Paginas -->
+  <ul class="nav nav-pills nav-justified">
+    <li role="presentation"><a href="index.html">Uniandes crawler</a></li>    
+    <li role="presentation"><a href="rss.html">RSS Query</a></li>
+    <li role="presentation"><a href="Wiki.html">Grafos Wiki</a></li>
+    <li role="presentation" class="active"><a href="#">Tweet Sentiment</a></li>  
+  </ul>
+
+  <div class="jumbotron">
+      <h2 class="text-primary">{{title}}</h2>
+      <p class="text-muted">{{description}}</p>
+      <p style="color:grey;font-size:12px;">Grupo 4: Areli Merari Moreno Fonseca (201710663) | Carlos Javier Carvajal Montealegre (201717206) | Erik Baumert (201717459)</p>
+
+
+<!-- Botones -->
+<div class="btn-group">
+  <button type="button" class="btn btn-primary" ng-click="SearchPol()">Polaridad</button>
+  <button type="button" class="btn btn-primary" ng-click="SearchSent()">Sentimiento</button>
+  <button type="button" class="btn btn-primary" ng-click="SearchRob()">Robots Favoritos</button>
+  <button type="button" class="btn btn-primary" ng-click="SearchRob2()">Robots ReTweet</button>
+  <button type="button" class="btn btn-primary", ng-click="SearchExam()">Ejemplos</button>
+</div>
+
+
+
+    <!-- Polaridad -->
+<table class="table table-striped" ng-show="showPol">
+  <tr>
+   <th>Personaje</th>
+   <th>Subjetivo Negativo</th>
+   <th>Objetivo Negativo</th>
+   <th>Neutro</th>
+   <th>Subjetivo Positivo</th>
+   <th>Objetivo Positivo</th>
+  </tr>
+  <tr ng-repeat = "pol in restDataPol.list">
+  <td> {{pol.name}}</td>  
+  <td>{{pol.menosdos}}</td>
+  <td>{{pol.menosuno}}</td>
+  <td>{{pol.neutro}}</td>
+  <td>{{pol.uno}}</td>
+  <td>{{pol.dos}}</td>
+ </tr>
+</table>
+
+
+    <!-- Sentimiento -->
+<table class="table table-striped" ng-show="showSent">
+  <tr>
+   <th>Personaje</th>
+   <th>Negativo</th>
+   <th>Neutro</th>
+   <th>Positivo</th>
+  </tr>
+  <tr ng-repeat = "sent in restDataSent.list">
+  <td> {{sent.name}}</td>  
+  <td>{{sent.menosuno}}</td>
+  <td>{{sent.neutro}}</td>
+  <td>{{sent.uno}}</td>
+ </tr>
+</table>
+
+<!-- Robot favoritos -->
+<table class="table table-striped" ng-show="showRob">
+  <tr>
+   <th>Screen Name</th>
+   <th>Conteo Favoritos</th>
+   <th>Conteo Seguidores</th>
+  </tr>
+  <tr ng-repeat = "rob in restDataRob">
+   <td> {{rob.user.screen_name}}</td>
+  <td> {{rob.user.favourites_count}}</td> 
+  <td> {{rob.user.followers_count}}</td>  
+ </tr>
+</table>
+
+ <!-- Posibles robots -->
+<table class="table table-striped" ng-show="showRob2">
+  <tr>
+   <th>Cuenta Seguida</th>
+   <th>Posible Robot</th>
+   <th># Retweets realizados</th>
+  </tr>
+  <tr ng-repeat = "ret in restDataRob2">
+   <td> {{ret['_id'].person}}</td>
+   <td> {{ret['_id'].possible_robot}}</td>
+   <td> {{ret.count}}</td>  
+ </tr>
+</table>
+
+<!-- Example tweets -->
+<table class="table table-striped" ng-show="showExam">
+  <tr>
+   <th>Tipo de Tweet</th>
+   <th>Contenido del Tweet</th>
+  </tr>
+  <tr ng-repeat = "tweet in tweets">
+   <td>{{tweet.type}}</td>
+   <td>{{tweet.content}}</td>
+ </tr>
+</table>
+
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/moment.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/angular/angular.min.js" type="text/javascript"></script>
+    <script src="scripts/tweetreader.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+      .input-group-addon {
+      min-width:300px;
+      text-align:left;
+      }
+    </style>
+  </body>
+</html>

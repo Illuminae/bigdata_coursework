@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="graphread">
+<head>
+    <title>Taller 2 - Grupo 4</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Taller 2 - Grupo 4</title>
+
+    <!-- Bootstrap -->
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../Alchemy/styles/vendor.css"/>
+<link rel="stylesheet" href="../Alchemy/alchemy.css"/>
+<link rel="stylesheet" href="../css/datepicker.css"/>
+
+
+</head>
+
+  <body ng-controller="GRAPHCtrl">
+  <ul class="nav nav-pills nav-justified">
+    <li role="presentation"><a href="index.html">Uniandes crawler</a></li>
+    <li role="presentation"><a href="rss.html">RSS Query</a></li>
+    <li role="presentation" class="active"><a href="#">Grafos Wiki</a></li>  
+  </ul>
+
+
+<div class="jumbotron">
+      <h2 class="text-primary">{{title2}}</h2>
+      <p class="text-muted">{{description2}}</p>
+      <p>
+        <button class="btn btn-primary btn-lg" type="button" ng-click="sendData(persona,pais,ciudad,fechain,fechafin)" >
+          <span class="glyphicon glyphicon glyphicon-list-alt"></span> Generar Grafo
+        </button>
+      </p>
+      <p style="color:grey;font-size:12px;">Grupo 4: Areli Merari Moreno Fonseca (201710663) | Carlos Javier Carvajal Montealegre (201717206) | Erik Baumert (201717459)</p>
+  </div>
+
+
+
+
+<div class="input-group">
+    <input type="date" class="form-control" max="2017-12-31", ng-model='date1'>
+    <div class="input-group-addon">al</div>
+    <input type="date" class="form-control" max="2017-12-31", ng-model='date2'>
+</div>
+
+
+
+
+  <div class="row">
+  <div class="col-lg-12">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Persona" aria-describedby="persona" ng-model='persona'>
+        <span class="input-group-addon" id="nombre">Persona</span>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="País" aria-describedby="pais" ng-model='pais'>
+        <span class="input-group-addon" id="facultad">País</span>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Ciudad" aria-describedby="ciudad" ng-model='ciudad'>
+        <span class="input-group-addon" id="facultad">Ciudad</span>
+      </div>
+
+  
+<div class="alchemy" id="alchemy"></div>
+
+ 
+<script src="../Alchemy/scripts/vendor.js"></script>
+  
+<script src="../Alchemy/alchemy.js"></script>
+  
+<script type="text/javascript">
+
+      var config = {
+            dataSource: 'http://localhost:3000/db',
+            directedEdges: true,
+            nodeTypes: { "role": 
+                ["persona", "pais", "ciudad"] 
+            }, 
+            edgeTypes: {"edgeType":
+                ["Nacido_en", "Ciudad_de"]
+              },
+
+            edgeCaption: 'edgeType',
+
+            graphWidth: function() {return 500},
+            graphHeight: function() {return 400},
+
+            nodeStyle: {
+                "Persona": {
+                    "borderColor": "Green",
+                    "color": "#1B9E77" 
+                },
+
+
+               "Ciudad": {
+                    "borderColor": "Orange",
+                    "color": "#D95F02"
+                },
+
+                 "Pais": {
+                    "borderColor": "Pink",
+                    "color": "#E7298A"
+                }
+            },
+
+            edgeStyle: {
+              "Nacido_en": {
+                "width": 2,
+                "color": "Green"
+              },
+              "Ciudad_de": {
+                "width": 2,
+                "color": "Orange"
+              },
+            }
+
+        };
+
+    alchemy = new Alchemy(config)
+
+  </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+   <script src="../js/jquery.min.js"></script>
+    <script src="../js/moment.js" type="text/javascript"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script src="../js/angular.min.js" type="text/javascript"></script>
+    <script src="scripts/graphread.js" type="text/javascript"></script>
+    <style type="text/css">
+   
+
+</body>
+</html>
+                     
+   
