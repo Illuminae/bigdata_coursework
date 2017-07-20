@@ -1,6 +1,6 @@
 ## bigdata_coursework
 
-This repository holds code snippets from the group assignments (with @cjcarvajal) at Universidad de Los Andes Big Data Analysis module (MINE-4102) in the Winter term 2017. They cover various big data/analytics topics and technology:
+This repository holds code snippets from the group assignments (with https://github.com/cjcarvajal) at Universidad de Los Andes Big Data Analysis module (MINE-4102) in the Winter term 2017. They cover various big data/analytics topics and technology:
 
 ### Assignment 1 - Information discovery
  * Crawling the university intranet and subscribing RSS feeds to extract and aggregate information using regex and xquery
